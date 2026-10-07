@@ -19,6 +19,7 @@ namespace ProiectMIP2
         private int x = 0;
         private Font textFont = new Font("Arial", 16);
         private volatile Brush textBrush = Brushes.Black;
+        private static BooleanSwitch logSwitch = new BooleanSwitch("LogSwitch", "Bejelentkezes a fileba");
         public Form1()
         {
             InitializeComponent();
@@ -38,7 +39,7 @@ namespace ProiectMIP2
                     x += 5;
                     if (x > this.ClientSize.Width)
                         x = 0;
-                    Trace.WriteLine(DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss.fff") + " - text mutat la x=" + x);
+                    Trace.WriteLineIf(logSwitch.Enabled, DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss.fff") + " - text mutat la x=" + x);
                     Thread.Sleep(100);
                 }    
             }
