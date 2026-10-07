@@ -18,6 +18,7 @@ namespace ProiectMIP2
         private volatile bool running = false;
         private int x = 0;
         private Font textFont = new Font("Arial", 16);
+        private volatile Brush textBrush = Brushes.Black;
         public Form1()
         {
             InitializeComponent();
@@ -29,7 +30,7 @@ namespace ProiectMIP2
                 while (running)
                 {
                     g.Clear(this.BackColor);
-                    g.DrawString("Szevasz!", textFont, Brushes.Black, x, 50);
+                    g.DrawString("Szevasz!", textFont, textBrush, x, 50);
 
                     x += 5;
                     if (x > this.ClientSize.Width)
@@ -58,6 +59,24 @@ namespace ProiectMIP2
         private void button2_Click(object sender, EventArgs e)
         {
             StopThread();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            using (ColorDialog dlg = new ColorDialog())
+            {
+                if (dlg.ShowDialog() == DialogResult.OK)
+                    this.BackColor = dlg.Color;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            using (ColorDialog dlg = new ColorDialog())
+            {
+                if (dlg.ShowDialog() == DialogResult.OK)
+                    textBrush = new SolidBrush(dlg.Color);
+            }
         }
     }
 }
