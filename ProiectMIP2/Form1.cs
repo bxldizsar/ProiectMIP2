@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace ProiectMIP2
@@ -22,6 +22,9 @@ namespace ProiectMIP2
         public Form1()
         {
             InitializeComponent();
+            Trace.Listeners.Add(new TextWriterTraceListener("log.txt"));
+            Trace.AutoFlush = true;
+
         }
         private void Run()
         {
@@ -35,6 +38,7 @@ namespace ProiectMIP2
                     x += 5;
                     if (x > this.ClientSize.Width)
                         x = 0;
+                    Trace.WriteLine(DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss.fff") + " - text mutat la x=" + x);
                     Thread.Sleep(100);
                 }    
             }
